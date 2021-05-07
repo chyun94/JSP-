@@ -1,0 +1,21 @@
+package user;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class UserDAO {
+	private Connection conn;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+	
+	//하나의 객체 생성
+	public UserDAO() {
+		
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection conn = DriverManager.getConnection
+				("jdbc:oracle:thin@//localhost:1521/xe","system","123");
+		return conn;
+	}
+}

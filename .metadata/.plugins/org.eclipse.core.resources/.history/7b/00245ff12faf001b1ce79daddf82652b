@@ -1,0 +1,44 @@
+package user;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class UserDAO {
+
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+
+	public static Connection getConnection() throws Exception {
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin@//localhost:1521/xe", "system", "123");
+		return conn;
+	}
+
+	public int login(String userID, String userPassword) {
+		String qul = "select userPassword from user_94 whereID=?";
+
+		try {
+			pstmt = conn.prepareStatement(qul);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+
+			// 결과가 존재 한다면 아래가 실행 아니면 return-1이 실행이 된다.
+			if (rs.next()) {
+				if (rs.getString(1).equals(userPassword)) {
+					return 1 // 로그인 성공
+				 else
+					return 0; // 비밀번호 불일치
+				}
+			// 아이디가 없음
+			return -1;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -2;
+	
+		
+}
