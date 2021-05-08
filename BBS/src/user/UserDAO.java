@@ -7,14 +7,20 @@ import java.sql.ResultSet;
 
 public class UserDAO {
 
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-
-	public static Connection getConnection() throws Exception {
-		Class.forName("oracle.jdbc.OracleDriver");
-		Connection conn = DriverManager.getConnection("jdbc:oracle:thin@//localhost:1521/xe", "system", "123");
-		return conn;
+	Connection conn;
+	PreparedStatement pstmt;
+	ResultSet rs;
+	
+	public UserDAO() {
+		try {
+			String qul ="jdbc:mysql://localhost:3306/BBS";
+			String dbID = "system";
+			String dbPW = "123";
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(qul,dbID,dbPW);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int login(String userID, String userPassword) {
@@ -41,5 +47,22 @@ public class UserDAO {
 		return -2; // 데이터베이스 오류 
 	
 	}
+	public int join(User user) {
+		String qul ="insert into user values(?,?,?,?,?)";
+		try {
+			pstmt=conn.prepareStatement(qul);
+			pstmt.setString(1, user.getUserID());
+			pstmt.setString(2, user.getUserPassword());
+			pstmt.setString(3, user.getUserName());
+			pstmt.setString(4, user.getUserGender());
+			pstmt.setString(5, user.getUserEmail());
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return -1;
+	}
+	
 		
 }

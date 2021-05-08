@@ -20,9 +20,22 @@
 </head>
 <body>
 	<%
+		String userID = null;
+	if(session.getAttribute("userID")!= null){
+		userID = (String) session.getAttribute("userID");
+	}
+	if(userID != null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert ('이미 로그인이 되어 있습니다..')");
+		script.println("location.href = 'main.jsp'");
+		script.println("<script>");	
+	}
 		UserDAO userDAO = new UserDAO();
 		int result = userDAO.login(user.getUserID(),user.getUserPassword());
 		if(result == 1){
+			//세션 처리를 해줘야 로그인과 회원가입시에도 그대로 남아 있다.
+			session.setAttribute("userID", user.getUserID());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href = 'main.jsp'");
