@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="DAO.*,java.util.*" %>
+<%@ page import="DAO.*,java.util.*,java.text.*" %>
 <% 
 DAO d = new DAO();
-List<VO> list =d.list();
+List<VO> list = d.mlist();
 %>
 <!DOCTYPE html>
 <html>

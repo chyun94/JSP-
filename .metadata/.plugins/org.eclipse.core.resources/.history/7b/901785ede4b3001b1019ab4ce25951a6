@@ -54,7 +54,7 @@ public class DAO {
 				
 			}
 		}
-		// 오디션 참가 목록
+		// 회원 목록
 		public List<VO> mlist() {
 			Connection conn = null;
 			PreparedStatement pstmt = null;

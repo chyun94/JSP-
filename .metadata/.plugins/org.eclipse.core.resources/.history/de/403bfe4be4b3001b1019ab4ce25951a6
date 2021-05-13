@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="DAO.*,java.util.*" %>
+<%@ page import="DAO.*,java.util.*,java.text.*" %>
 <% 
 DAO d = new DAO();
-List<VO> list =d.list();
+List<VO> list = d.mlist();
 %>
 <!DOCTYPE html>
 <html>
@@ -63,13 +63,14 @@ text-align: center; background: skyblue; padding: 11px;
 		<table>
 	
 			<tr>
-				<th>참가 번호</th>
-				<th>참가자명</th>
-				<th>생년월일</th>
-				<th>성별</th>
-				<th>특기</th>
-				<th>소속사</th>
-			</tr>
+						<th>채점번호</th>
+						<th>참가번호</th>
+						<th>참가자명</th>
+						<th>생년월일</th>
+						<th>점수</th>
+						<th>평점</th>
+						<th>멘토</th>
+					</tr>
 				<%
 					for(int x=0; x<list.size(); x++){
 						String gender="남자";

@@ -3,7 +3,7 @@
 <%@ page import="DAO.*,java.util.*" %>
 <% 
 DAO d = new DAO();
-List<VO> list =d.list();
+List<VO> list = d.mlist();
 %>
 <!DOCTYPE html>
 <html>

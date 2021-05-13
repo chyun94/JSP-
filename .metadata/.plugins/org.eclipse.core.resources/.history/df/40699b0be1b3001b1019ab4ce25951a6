@@ -3,7 +3,7 @@
 <%@ page import="DAO.*,java.util.*" %>
 <% 
 DAO d = new DAO();
-List<VO> list =d.list();
+List<VO> list = d.list();
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@ margin: 0 auto;
 }
 .subject table,th,td{
 border: 1px solid gray;
-text-align: centerd;
+text-align: center;
 }
 
 .footer{

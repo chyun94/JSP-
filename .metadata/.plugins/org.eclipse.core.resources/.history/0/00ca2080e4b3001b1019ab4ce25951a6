@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="DAO.*,java.util.*" %>
+<%@ page import="DAO.*,java.util.*,java.text.*" %>
 <% 
 DAO d = new DAO();
-List<VO> list =d.list();
+List<VO> list = d.mlist();
 %>
 <!DOCTYPE html>
 <html>
@@ -61,30 +61,23 @@ text-align: center; background: skyblue; padding: 11px;
 	<div align="center">
 		<h2 style="text-align: center; padding: 25px;">멘토 점수 목록 조회</h2>	
 		<table>
-	
 			<tr>
-				<th>참가 번호</th>
+				<th>채점번호</th>
+				<th>참가번호</th>
 				<th>참가자명</th>
 				<th>생년월일</th>
-				<th>성별</th>
-				<th>특기</th>
-				<th>소속사</th>
+				<th>점수</th>
+				<th>평점</th>
+				<th>멘토</th>
 			</tr>
+	
 				<%
 					for(int x=0; x<list.size(); x++){
-						String gender="남자";
-						if(list.get(x).getArtist_gender().equals("F"))
-							gender="여자";
-						
-							String talent = "노래";
-							if(list.get(x).getTalent().equalsIgnoreCase("A")){
-								talent="댄스";
-							}else if(list.get(x).getTalent().equalsIgnoreCase("B")){
-								talent="렙";
-							}
-							
-						String day = list.get(x).getArtist_birth();
-						String ymd = day.substring(0,4)+"년"+ day.substring(4,6)+"월"+ day.substring(6)+"일";
+						String yy = list.get(x).getArtist_birth().substring(0,4);
+						String mm = list.get(x).getArtist_birth().substring(4,6);
+						String dd = list.get(x).getArtist_birth().substring(6);
+						String ymd = yy+"년"+mm+"월"+dd+"일";
+					
 					%>
 					
 					<tr class="">
